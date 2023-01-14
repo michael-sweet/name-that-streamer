@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    margin-top: 0;
+}
+
+@mixin standard-box {
+    color: white;
+    padding: 15px;
+    background-color: black;
+    border: 2px solid white;
+}
+
+.container {
+    position: relative;
+}
+
+video {
+    width: 1920px;
+    height: 1080px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1920px;
+    height: 1080px;
+}
+
+.streamer-name {
+    @include standard-box();
+
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    font-size: 64px;
+    z-index: 99;
+}
+
+.timer {
+    @include standard-box();
+
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 64px;
+    z-index: 99;
+}
+
+.instructions {
+    @include standard-box();
+
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 99;
+    font-weight: bold;
+    font-size: 24px;
+    width: 250px;
+}
+
+.leaderboard {
+    @include standard-box();
+
+    position: absolute;
+    top: 215px;
+    left: 15px;
+    width: 250px;
+    z-index: 99;
+
+    table {
+        color: white;
+        width: 100%;
+
+        td.user {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            max-width: 1px;
+            padding: 0 15px;
+        }
+    }
+}

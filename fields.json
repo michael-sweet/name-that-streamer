@@ -1,0 +1,8 @@
+{
+    "twitchBearerToken": {
+        "label": "Twitch Bearer Token"
+    },
+    "twitchClientId": {
+        "label": "Twitch Client ID"
+    }
+}
