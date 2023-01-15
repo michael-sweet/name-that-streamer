@@ -87,7 +87,7 @@ function renderLeaderboard() {
     Loads the top 100 clips from livestreamfails.com into 'streamerClips'
 */
 function loadClips(initial = false) {
-    streamerClips = [];
+    let newStreamerClips = [];
     let calls = 4;
     let urlPart = 'https://api.livestreamfails.com/clips?querySort=new&queryMinScore=500';
     let load = function (initial, callsLeft, lastId) {
@@ -98,13 +98,16 @@ function loadClips(initial = false) {
         $.ajax({
             url: url,
             success: function (data) {
-                streamerClips = streamerClips.concat(data.filter(clip => {
+                newStreamerClips = newStreamerClips.concat(data.filter(clip => {
                     return clip.sourcePlatform == 'TWITCH' && clip.isNSFW == false
                 }));
+                if (callsLeft <= 0) {
+                    streamerClips = newStreamerClips;
+                }
                 if (callsLeft <= 0 && initial) {
                     loop();
                 } else if (callsLeft > 0) {
-                    load(initial, callsLeft - 1, streamerClips[streamerClips.length - 1].id);
+                    load(initial, callsLeft - 1, newStreamerClips[newStreamerClips.length - 1].id);
                 }
             }
         });
